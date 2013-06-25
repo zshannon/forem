@@ -8,7 +8,6 @@ require 'forem/platform'
 require 'workflow'
 
 require 'decorators'
-require 'localeapp'
 
 module Forem
   mattr_accessor :base_path, :user_class, :theme, :formatter,
@@ -19,7 +18,7 @@ module Forem
 
   class << self
     def base_path
-      @@base_path ||= Rails.application.routes.named_routes[:forem].path
+      @@base_path ||= Rails.application.routes.named_routes[:forem].try(:path)
     end
 
     def decorate_user_class!
